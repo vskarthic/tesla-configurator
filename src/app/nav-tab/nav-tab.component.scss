@@ -1,0 +1,13 @@
+.tab{
+    display: flex;
+    justify-content: center;
+}
+.tab li{
+    border: 1px solid gray;
+    display: flex;
+    flex-grow: 1;
+
+}
+.tab li button{
+    width: 100%;
+}

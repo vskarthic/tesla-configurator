@@ -1,0 +1,33 @@
+<tesla-nav-tab [activeTab]="'summary'"></tesla-nav-tab>
+<div class="step-title">Step 3: Summary</div>
+<ng-container *ngIf="modelData">
+    <h1>Your Tesla {{modelData.description}}</h1>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <b>{{carObj.config?.description}}</b>
+            <div>Range:{{carObj.config?.range}} - Max speed: {{carObj.config?.speed}}</div>
+          </div>
+          <div class="col">{{carObj.config?.price | currency}}</div>
+        </div>
+        <div class="row" *ngIf="carObj.colorObj?.price">
+          <div class="col"><b>{{carObj.colorObj?.description}}</b></div>
+          <div class="col">{{carObj.colorObj?.price | currency}}</div>
+        </div>
+        <div class="row" *ngIf="carObj.towHitch">
+          <div class="col"><b>Tow Hitch Package</b></div>
+          <div class="col">{{'1000' | currency}}</div>
+        </div>
+        <div class="row" *ngIf="carObj.yoke">
+          <div class="col"><b>Yoke Steering Wheel</b></div>
+          <div class="col">{{'1000' | currency}}</div>
+        </div>
+        <div class="row summary-total-cost">
+          <div class="col"><b>TOTAL COST</b></div>
+          <div class="col">{{totalCost | currency}}</div>
+        </div>
+    </div>
+    <div *ngIf="carObj.model && carObj.colorObj">
+      <tesla-car-image [teslaModel]="carObj.model" [teslaColor]="carObj.colorObj.code"></tesla-car-image>
+  </div>
+</ng-container>

@@ -1,0 +1,19 @@
+<tesla-nav-tab [activeTab]="'home'"></tesla-nav-tab>
+<div class="step-title">Step 1: Choose your Model and Color</div>
+<div class="dropdown">
+    <label for="modelSelect">Model</label>
+    <select name="modelSelect" id="modelSelect" [(ngModel)]="teslaModel" (ngModelChange)="onModelChange(teslaModel)">
+        <option value="">Choose Model</option>
+        <option *ngFor="let model of modelData" value="{{model.code}}">{{model.description}}</option>
+    </select>
+    <span *ngIf="teslaModel">
+        <label for="colorSelect">Color</label>
+        <select name="colorSelect" id="colorSelect" [(ngModel)]="teslaColor" (ngModelChange)="onColorChange()">
+            <option value="">Choose Color</option>
+            <option *ngFor="let color of colors" value="{{color.code}}">{{color.description}}</option>
+        </select>
+    </span>
+</div>
+<div *ngIf="teslaModel && teslaColor">
+    <tesla-car-image [teslaModel]="teslaModel" [teslaColor]="teslaColor"></tesla-car-image>
+</div>

@@ -1,0 +1,23 @@
+<tesla-nav-tab [activeTab]="'config'"></tesla-nav-tab>
+<div class="step-title">Step 2: Select you config and options</div>
+<ng-container *ngIf="configData">
+    <div class="dropdown">
+        <label  for="modelSelect">Model</label>
+        <select name="modelSelect" id="modelSelect" [(ngModel)]="configOption" (ngModelChange)="onModelChange(configOption)">
+            <option value="">Choose Model</option>
+            <option *ngFor="let obj of configData.configs" value="{{obj.id}}">{{obj.description}}</option>
+        </select>
+        <div *ngIf="config" class="conifg-data">Range:{{config.range}} - Max Speed:{{config.speed}} - Cost:{{config.price | currency}}</div>
+    </div>
+    <div>
+        <label for="includeTow">Tow Hitch?</label>
+        <input name="includeTow" id="includeTow" type="checkbox" [(ngModel)]="configData.towHitch" (change)="changeValue($event,'towHitch')">
+    </div>
+    <div>
+        <label for="includeYoke">Yoke Steering Wheel?</label>
+        <input name="includeYoke" id="includeYoke" type="checkbox" [(ngModel)]="configData.yoke" (change)="changeValue($event,'yoke')">
+    </div>
+    <div *ngIf="data.model && data.colorObj">
+        <tesla-car-image [teslaModel]="data.model" [teslaColor]="data.colorObj.code"></tesla-car-image>
+    </div>
+</ng-container>
